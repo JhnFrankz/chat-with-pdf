@@ -17,6 +17,9 @@ dependencies:
   astro:
     specifier: ^4.9.1
     version: 4.9.1(typescript@5.4.5)
+  cloudinary:
+    specifier: ^2.2.0
+    version: 2.2.0
   svelte:
     specifier: ^4.2.17
     version: 4.2.17
@@ -1828,6 +1831,14 @@ packages:
       wrap-ansi: 7.0.0
     dev: false
 
+  /cloudinary@2.2.0:
+    resolution: {integrity: sha512-akbLTZcNegGSkl07Frnt9fyiK9KZ2zPS+a+j7uLrjNYxVhDpDdIBz9G6snPCYqgk+WLVMRPfXTObalLr5L6g0Q==}
+    engines: {node: '>=9'}
+    dependencies:
+      lodash: 4.17.21
+      q: 1.5.1
+    dev: false
+
   /clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -2678,6 +2689,10 @@ packages:
       p-locate: 5.0.0
     dev: false
 
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
+
   /log-symbols@6.0.0:
     resolution: {integrity: sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==}
     engines: {node: '>=18'}
@@ -3497,6 +3512,11 @@ packages:
 
   /property-information@6.5.0:
     resolution: {integrity: sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==}
+    dev: false
+
+  /q@1.5.1:
+    resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
+    engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     dev: false
 
   /queue-microtask@1.2.3:
