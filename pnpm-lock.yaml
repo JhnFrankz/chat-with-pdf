@@ -20,6 +20,9 @@ dependencies:
   svelte:
     specifier: ^4.2.17
     version: 4.2.17
+  svelte-file-dropzone:
+    specifier: ^2.0.7
+    version: 2.0.7(svelte@4.2.17)
   tailwindcss:
     specifier: ^3.4.3
     version: 3.4.3
@@ -2168,6 +2171,13 @@ packages:
       reusify: 1.0.4
     dev: false
 
+  /file-selector@0.6.0:
+    resolution: {integrity: sha512-QlZ5yJC0VxHxQQsQhXvBaC7VRJ2uaxTf+Tfpu4Z/OcVQJVpZO+DGU0rkoVW5ce2SccxugvpBJoMvUs59iILYdw==}
+    engines: {node: '>= 12'}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
   /fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
@@ -3885,6 +3895,15 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /svelte-file-dropzone@2.0.7(svelte@4.2.17):
+    resolution: {integrity: sha512-sykRq+Q8rXM9yqsD3T9yzb3syLe21Go01cxb5NTfKA9RgMWHT/gnjS8g36YFWw3jIdC7vbbmuwwgYdA0mlcMqw==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0
+    dependencies:
+      file-selector: 0.6.0
+      svelte: 4.2.17
     dev: false
 
   /svelte-hmr@0.16.0(svelte@4.2.17):
