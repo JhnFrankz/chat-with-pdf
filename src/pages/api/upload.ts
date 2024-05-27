@@ -1,5 +1,13 @@
 import type { APIRoute } from "astro";
 
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: import.meta.env.CLOUDINARY_NAME,
+  api_key: import.meta.env.CLOUDINARY_KEY,
+  api_secret: import.meta.env.CLOUDINARY_SECRET,
+});
+
 export const POST: APIRoute = async ({ request }) => {
   const formData = await request.formData();
   const file = formData.get("file");
