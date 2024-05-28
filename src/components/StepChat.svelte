@@ -1,9 +1,10 @@
 <script>
-  import { Input, Label } from "flowbite-svelte";
-  import { appStatusInfo } from "../store";
+  import { Input, Label, Spinner } from "flowbite-svelte";
+  import { appStatusInfo, setAppStatusError } from "../store";
 
   const { id, url, pages } = $appStatusInfo;
 
+  let answer = "";
   let loading = false;
 
   const numOfImagesToShow = Math.min(pages, 4);
@@ -14,18 +15,38 @@
       .replace(".pdf", ".jpg");
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     loading = true;
-    fetch("/api/ask", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id,
-        question: "¿De qué trata este documento?",
-      }),
-    });
+
+    const question = event.target.question.value;
+
+    const searchParams = new URLSearchParams();
+    searchParams.append("id", id);
+    searchParams.append("question", question);
+
+    try {
+      const eventSource = new EventSource(
+        `/api/ask?${searchParams.toString()}`
+      );
+
+      eventSource.onmessage = (event) => {
+        loading = false;
+        const incomingData = JSON.parse(event.data);
+
+        if (incomingData === "__END__") {
+          eventSource.close();
+          return;
+        }
+
+        answer += incomingData;
+      };
+    } catch (e) {
+      setAppStatusError();
+    } finally {
+      loading = false;
+    }
   };
 </script>
 
@@ -40,10 +61,21 @@
 </div>
 
 <form class="mt-8" on:submit={handleSubmit}>
-  <Label for="question-input" class="block mb-2">Deja aquí tu pregunta</Label>
-  <Input
-    id="question-input"
-    required
-    placeholder="¿De qué trata este documento?"
+  <Label for="question" class="block mb-2">Deja aquí tu pregunta</Label>
+  <Input id="question" required placeholder="¿De qué trata este documento?"
   ></Input>
 </form>
+
+{#if loading}
+  <div class="mt-10 flex justify-center items-center flex-col gap-y-2">
+    <Spinner />
+    <p class="opacity-75">Esperando respuesta...</p>
+  </div>
+{/if}
+
+{#if answer}
+  <div class="mt-8">
+    <p class="font-medium">Respuesta:</p>
+    <p>{answer}</p>
+  </div>
+{/if}
